@@ -29,16 +29,15 @@ class MyStreamListener(tweepy.StreamListener):
     def on_status(self, tweet):
 
         status = api.get_status(tweet.id)
-        favorited = status.favorited
-        sleep_interval = random.randint(200, 700)
+        sleep_interval = random.randint(100, 300)
 
-        if not favorited:
+        if not status.favorited and status.favorite_count > 5:
             api.create_favorite(tweet.id)
             now = datetime.now()
             current_time = now.strftime("%H:%M")
 
             print(
-                f"Time({current_time}): Liked Tweet ----- Next action in {sleep_interval // 60} minutes")
+                f"Time({current_time}): Liked Tweet ----- Next action in {sleep_interval // 60} minute(s)")
 
             sleep(sleep_interval)
 
@@ -48,7 +47,7 @@ class MyStreamListener(tweepy.StreamListener):
             current_time = now.strftime("%H:%M")
 
             print(
-                f"Time({current_time}): Followed: {tweet.user.screen_name} ----- Next action in {sleep_interval // 60} minutes")
+                f"Time({current_time}): Followed: {tweet.user.screen_name} ----- Next action in {sleep_interval // 60} minute(s)")
 
             sleep(sleep_interval)
 
