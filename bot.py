@@ -42,7 +42,7 @@ class MyStreamListener(tweepy.StreamListener):
 
             sleep(sleep_interval)
 
-        if not tweet.user.following:
+        if not tweet.user.following and tweet.user.followers_count >= 100:
             tweet.user.follow()
             now = datetime.now()
             current_time = now.strftime("%H:%M")
