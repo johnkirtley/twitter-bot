@@ -29,7 +29,7 @@ class MyStreamListener(tweepy.StreamListener):
     def on_status(self, tweet):
 
         status = api.get_status(tweet.id)
-        sleep_interval = random.randint(100, 300)
+        sleep_interval = random.randint(200, 800)
 
         if not status.favorited and status.favorite_count > 5:
             api.create_favorite(tweet.id)
