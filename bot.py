@@ -53,13 +53,13 @@ class MyStreamListener(tweepy.StreamListener):
             sleep(sleep_interval)
 
         # If User Isn't Following Back and Has <= 300 Followers, Unfollow
-        friendship = api.show_friendship(me.id, tweet.user.id)
-        if tweet.user.followers_count <= 300:
-            if friendship[0].followed_by == False:
-                api.destroy_friendship(tweet.user.id)
-                print(f"Unfollowing {friendship[1].screen_name}")
+        # friendship = api.show_friendship(me.id, tweet.user.id)
+        # if tweet.user.followers_count <= 300:
+        #     if friendship[0].followed_by == False:
+        #         api.destroy_friendship(tweet.user.id)
+        #         print(f"Unfollowing {friendship[1].screen_name}")
 
-                sleep(sleep_interval)
+        #         sleep(sleep_interval)
 
 
     def on_error(self, status):
