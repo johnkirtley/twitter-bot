@@ -17,8 +17,7 @@ ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
 ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
 
 
-search_terms = ["Python", "JavaScript", "Node.js",
-                "ReactJS", "Web Development", "100daysofcode"]
+search_terms = ["Shopify", "Ecommerce", "Shopify Store", "Dropshipping", "Entrepreneur", "Shopify Seller", "Shopify Experts", "Shopify Partners"]
 
 
 class MyStreamListener(tweepy.StreamListener):
@@ -27,10 +26,11 @@ class MyStreamListener(tweepy.StreamListener):
         self.me = api.me()
 
     def on_status(self, tweet):
-
+        me = api.me()
         status = api.get_status(tweet.id)
         sleep_interval = random.randint(200, 800)
 
+        # Likes a Tweet Within Given Parameters
         if not status.favorited and status.favorite_count > 5:
             api.create_favorite(tweet.id)
             now = datetime.now()
@@ -41,6 +41,7 @@ class MyStreamListener(tweepy.StreamListener):
 
             sleep(sleep_interval)
 
+        # Follows User If Not Already Following and Within Given Parameters
         if not tweet.user.following and tweet.user.followers_count >= 100:
             tweet.user.follow()
             now = datetime.now()
@@ -50,6 +51,16 @@ class MyStreamListener(tweepy.StreamListener):
                 f"Time({current_time}): Followed: {tweet.user.screen_name} ----- Next action in {sleep_interval // 60} minute(s)")
 
             sleep(sleep_interval)
+
+        # If User Isn't Following Back and Has <= 300 Followers, Unfollow
+        friendship = api.show_friendship(me.id, tweet.user.id)
+        if tweet.user.followers_count <= 300:
+            if friendship[0].followed_by == False:
+                api.destroy_friendship(tweet.user.id)
+                print(f"Unfollowing {friendship[1].screen_name}")
+
+                sleep(sleep_interval)
+
 
     def on_error(self, status):
         print('Error detected')
