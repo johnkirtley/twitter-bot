@@ -17,7 +17,8 @@ ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
 ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
 
 
-search_terms = ["Shopify", "Ecommerce", "Shopify Store", "Dropshipping", "Entrepreneur", "Shopify Seller", "Shopify Experts", "Shopify Partners"]
+search_terms = ["Shopify", "Ecommerce", "Shopify Store", "Dropshipping",
+                "Shopify Seller", "Shopify Experts", "Shopify Partners"]
 
 
 class MyStreamListener(tweepy.StreamListener):
@@ -60,7 +61,6 @@ class MyStreamListener(tweepy.StreamListener):
         #         print(f"Unfollowing {friendship[1].screen_name}")
 
         #         sleep(sleep_interval)
-
 
     def on_error(self, status):
         print('Error detected')
