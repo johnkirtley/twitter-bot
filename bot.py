@@ -30,12 +30,12 @@ def process():
     followers = api.followers_ids(api.me().id)
     friends = api.friends_ids(api.me().id)
 
-    console.log("Unfollowing initiated")
-    
+    print("Unfollowing initiated")
+
     for friend in friends:
         if friend not in followers:
             api.destroy_friendship(friend)
-            console.log(f"Unfollowed {friend}")
+            print(f"Unfollowed {friend}")
 
 if __name__ == "__main__":
     process()
