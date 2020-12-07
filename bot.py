@@ -33,9 +33,11 @@ def process():
     print("Unfollowing initiated")
 
     for friend in friends:
+        sleep_interval = random.randint(200, 800)
         if friend not in followers:
             api.destroy_friendship(friend)
             print(f"Unfollowed {friend}")
+            sleep(sleep_interval)
 
 if __name__ == "__main__":
     process()
