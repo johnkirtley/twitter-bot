@@ -43,24 +43,24 @@ class MyStreamListener(tweepy.StreamListener):
             sleep(sleep_interval)
 
         # Follows User If Not Already Following and Within Given Parameters
-        if not tweet.user.following and tweet.user.followers_count >= 100:
-            tweet.user.follow()
-            now = datetime.now()
-            current_time = now.strftime("%H:%M")
+        # if not tweet.user.following and tweet.user.followers_count >= 100:
+        #     tweet.user.follow()
+        #     now = datetime.now()
+        #     current_time = now.strftime("%H:%M")
 
-            print(
-                f"Time({current_time}): Followed: {tweet.user.screen_name} ----- Next action in {sleep_interval // 60} minute(s)")
+        #     print(
+        #         f"Time({current_time}): Followed: {tweet.user.screen_name} ----- Next action in {sleep_interval // 60} minute(s)")
 
-            sleep(sleep_interval)
+        #     sleep(sleep_interval)
 
         # If User Isn't Following Back and Has <= 300 Followers, Unfollow
-        # friendship = api.show_friendship(me.id, tweet.user.id)
-        # if tweet.user.followers_count <= 300:
-        #     if friendship[0].followed_by == False:
-        #         api.destroy_friendship(tweet.user.id)
-        #         print(f"Unfollowing {friendship[1].screen_name}")
+        friendship = api.show_friendship(me.id, tweet.user.id)
+        if tweet.user.followers_count <= 300:
+            if friendship[0].followed_by == False:
+                api.destroy_friendship(tweet.user.id)
+                print(f"Unfollowing {friendship[1].screen_name}")
 
-        #         sleep(sleep_interval)
+                sleep(sleep_interval)
 
     def on_error(self, status):
         print('Error detected')
