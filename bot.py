@@ -94,15 +94,15 @@ class MyStreamListener(tweepy.StreamListener):
         print('Error detected')
 
 
-# auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-# auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-# api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 
-# tweet_listener = MyStreamListener(api)
-# stream = tweepy.Stream(api.auth, tweet_listener)
-# stream.filter(track=search_terms, is_async=True, languages=["en"])
+tweet_listener = MyStreamListener(api)
+stream = tweepy.Stream(api.auth, tweet_listener)
+stream.filter(track=search_terms, is_async=True, languages=["en"])
 
 # with open('tweets.txt', 'r') as tweet_file:
 #     tweets = tweet_file.readlines()
