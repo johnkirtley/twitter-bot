@@ -4,12 +4,17 @@ from time import sleep
 import tweepy
 import random
 from datetime import datetime
-import config
+# import config
 
-CONSUMER_KEY = config.CONSUMER_KEY
-CONSUMER_SECRET = config.CONSUMER_SECRET
-ACCESS_TOKEN = config.ACCESS_TOKEN
-ACCESS_TOKEN_SECRET = config.ACCESS_TOKEN_SECRET
+# CONSUMER_KEY = config.CONSUMER_KEY
+# CONSUMER_SECRET = config.CONSUMER_SECRET
+# ACCESS_TOKEN = config.ACCESS_TOKEN
+# ACCESS_TOKEN_SECRET = config.ACCESS_TOKEN_SECRET
+
+    CONSUMER_KEY = os.environ["CONSUMER_KEY"]
+    CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
+    ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
+    ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
 
 def twitter_api():
     CONSUMER_KEY = os.environ["CONSUMER_KEY"]
